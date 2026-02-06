@@ -2,7 +2,7 @@ import streamlit as st
 import requests
 
 # 🔗 Backend URL
-API_BASE_URL = "http://localhost:8000"  # Change for deployment
+API_BASE_URL = "https://youtube-chatbot-l532.onrender.com"  # Change for deployment
 
 st.set_page_config(
     page_title="YouTube Q&A Assistant v1.1",
@@ -284,3 +284,4 @@ st.markdown("""
     <p style='font-size: 0.8em; margin-top: 10px;'>YouTube Q&A Assistant v1.1 | Research Ready | Created by Moin</p>
 </div>
 """, unsafe_allow_html=True)
+
