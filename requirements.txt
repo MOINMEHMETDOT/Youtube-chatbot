@@ -1,0 +1,15 @@
+fastapi
+uvicorn
+streamlit
+pydantic
+python-dotenv
+langchain-core
+langchain-text-splitters
+langchain-google-genai
+langchain-community
+faiss-cpu
+yt-dlp
+youtube-transcript-api
+requests
+
+
