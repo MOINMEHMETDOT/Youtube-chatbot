@@ -41,21 +41,17 @@ st.markdown(
 )    
 
 st.markdown("""
-**⚠️Cloud Deployment Technical Limitation**
-            
-**⚠️ Production Notice:** If The Live demo shows "Processing failed"this is due to YouTube's strict cloud IP blocking on deployed servers (Render/Railway). See details below.
-            
+**⚠️Cloud Deployment Technical Limitation**          
+**⚠️ Production Notice:** If The Live demo shows "Processing failed"this is due to YouTube's strict cloud IP blocking on deployed servers (Render/Railway). See details below.           
 **✅ Works perfectly on localhost/development.**
 This application faces YouTube bot detection on cloud platforms.
-
 🎥 **Watch Full Technical Explanation Why it Failed:**
 🎬 [Cloud vs Local Analysis](https://www.youtube.com/watch?v=Vwb89PJQHBc)
 
- **See It Working: in Local Machine**
-▶️ [Local Demo (Working)](https://www.linkedin.com/posts/md-moinuddin-5777503ab_generativeai-machinelearning-python-activity-7426181276790980608-ELeA)
-
-📂 [**GitHub:**](https://github.com/MOINMEHMETDOT/Youtube-chatbot/tree/main)
-            
+      **Tried & failed fixes:**
+      - `yt-dlp` with cookies/browser export
+      - Webshare free proxies (worked 12x, then blocked as "cloud web-based IP")
+      - Residential rotating proxies (no free reliable option for continuous demo)       
     ***Trying my best to resolve this issue for cloud deployment, As YouTube's anti-bot measures are very aggressive***
 """)    
 
@@ -340,4 +336,5 @@ st.markdown("""
     <p style='font-size: 0.8em; margin-top: 10px;'>YouTube Q&A Assistant v1.1 | Research Ready | Created by Moin</p>
 </div>
 """, unsafe_allow_html=True)
+
 
