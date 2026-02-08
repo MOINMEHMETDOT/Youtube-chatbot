@@ -1,14 +1,17 @@
 import streamlit as st
 import requests
 
+
 # 🔗 Backend URL
 API_BASE_URL = "https://youtube-chatbot-l532.onrender.com"  # Change for deployment
+
 
 st.set_page_config(
     page_title="YouTube Q&A Assistant v1.1",
     page_icon="🎥",
     layout="wide"
 )
+
 
 # Initialize session state
 if "messages" not in st.session_state:
@@ -20,13 +23,41 @@ if "current_video" not in st.session_state:
 if "research_results" not in st.session_state:
     st.session_state.research_results = []
 
+
 # Header
 st.title("🎥 YouTube Video Q&A Assistant")
 st.caption("Version 1.1 - Research Integration Ready")
 st.markdown("""
 Ask questions about any YouTube video using AI-powered transcript analysis.
-**New:** Research papers & resources automatically linked to video content.
-""")
+**New:** Research papers & resources automatically linked to video content.""")
+
+st.markdown(
+    """
+    <p style="font-size:24px; font-weight:bold;">
+        Dear recruiter please read below line
+    </p>
+    """,
+    unsafe_allow_html=True
+)    
+
+st.markdown("""
+**⚠️Cloud Deployment Technical Limitation**
+            
+**⚠️ Production Notice:** Live demo shows "Processing failed" due to YouTube's strict cloud IP blocking on deployed servers (Render/Railway). Works perfectly locally. See details below.
+            
+**✅ Works perfectly on localhost/development.**
+This application faces YouTube bot detection on cloud platforms.
+
+🎥 **Watch Full Technical Explanation Why it Failed:**
+🎬 [Cloud vs Local Analysis](https://www.youtube.com/watch?v=Vwb89PJQHBc)
+
+ **See It Working: in Local Machine**
+▶️ [Local Demo (Working)](https://www.linkedin.com/posts/md-moinuddin-5777503ab_generativeai-machinelearning-python-activity-7426181276790980608-ELeA)
+
+📂 [**GitHub:**](https://github.com/MOINMEHMETDOT/Youtube-chatbot/tree/main)
+            
+    ***Trying my best to resolve this issue for cloud deployment, As YouTube's anti-bot measures are very aggressive***
+""")    
 
 # Sidebar
 with st.sidebar:
@@ -42,6 +73,7 @@ with st.sidebar:
     - 📝 Context-aware answers
     - 🔬 Research paper integration (v2.0)
     
+    **RIGHT NOW IT IS ON HOLD UNLIT PROBLEM RESOLVED THANKYOU:-:-:-**
     **🆕 v2.0 Coming Soon:**
     - 🤖 Auto research agent
     - 📄 arXiv/Google Scholar papers
@@ -101,12 +133,16 @@ with st.sidebar:
     </div>
     """, unsafe_allow_html=True)
 
+
 st.divider()
+
 
 # Video input section
 st.header("📥 Step 1: Load YouTube Video")
 
+
 col1, col2 = st.columns([4, 1])
+
 
 with col1:
     youtube_url = st.text_input(
@@ -115,14 +151,16 @@ with col1:
         label_visibility="collapsed"
     )
 
+
 with col2:
     process_button = st.button("🚀 Process", use_container_width=True)
+
 
 if process_button:
     if not youtube_url.strip():
         st.warning("⚠️ Please enter a valid YouTube URL")
     else:
-        with st.spinner("🔄 Processing video... This may take a moment..."):
+        with st.spinner("🔄 Processing video... Please Wait moment... Because (Render) backend part sleep if it is inactive and take time upto 5 Mins"):
             try:
                 res = requests.post(
                     f"{API_BASE_URL}/youtube/ingest",
@@ -138,9 +176,18 @@ if process_button:
                     st.session_state.research_results = []
                 else:
                     error_detail = res.json().get("detail", res.text)
-                    st.error(f"❌ Error: {error_detail}")
+                    st.error(f"❌ Expected: {error_detail}")
+                    st.info("🔒 **This is YouTube cloud IP blocking.**")
                     st.session_state.video_processed = False
-
+                    st.error("""
+    - YouTube blocks **datacenter/cloud IPs** after ~1-3 requests
+    - Detected as "bot" → `"Sign in to confirm you're not a bot"` or `IpBlocked` errors
+    - **Tried & failed fixes:**
+      - `yt-dlp` with cookies/browser export
+      - Webshare free proxies (worked 12x, then blocked as "cloud web-based IP")
+      - Residential rotating proxies (no free reliable option for continuous demo)
+    **⚡ Localhost = 100% working** (no IP blocks, no captcha)
+""")
             except requests.exceptions.Timeout:
                 st.error("⏱️ Request timeout. Video might be too long. Try a shorter video.")
             
@@ -150,7 +197,9 @@ if process_button:
             except Exception as e:
                 st.error(f"❌ Unexpected error: {str(e)}")
 
+
 st.divider()
+
 
 # NEW: Research Integration Section
 if st.session_state.video_processed:
@@ -204,19 +253,24 @@ if st.session_state.video_processed:
             **Click "Find Research Papers" when ready!**
             """)
 
+
 st.divider()
+
 
 # Q&A Section
 st.header("💬 Step 2: Ask Questions")
+
 
 if not st.session_state.video_processed:
     st.info("👆 Please process a YouTube video first before asking questions.")
     st.stop()
 
+
 # Display chat history
 for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.write(message["content"])
+
 
 # Chat input
 if question := st.chat_input("Ask anything about the video (or mention 'research' for paper references)..."):
@@ -276,12 +330,13 @@ if question := st.chat_input("Ask anything about the video (or mention 'research
                     "content": error_msg
                 })
 
+
 # Footer
 st.divider()
 st.markdown("""
 <div style='text-align: center; color: gray; font-size: 0.9em;'>
     <p>💡 <b>Tips:</b> Ask specific questions like "What is the main topic?" or "Summarize the key points" or "Show me research papers on this topic"</p>
+    <p>⚠️ <b>Cloud demo:</b> Fails due to YouTube IP blocks. Localhost = 100% working. See sidebar.</p>
     <p style='font-size: 0.8em; margin-top: 10px;'>YouTube Q&A Assistant v1.1 | Research Ready | Created by Moin</p>
 </div>
 """, unsafe_allow_html=True)
-
