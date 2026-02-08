@@ -45,7 +45,9 @@ st.markdown("""
 **⚠️ Production Notice:** If The Live demo shows "Processing failed"this is due to YouTube's strict cloud IP blocking on deployed servers (Render/Railway). See details below.           
 **✅ Works perfectly on localhost/development.**
 This application faces YouTube bot detection on cloud platforms.
+            
 🎥 **Watch Full Technical Explanation Why it Failed:**
+            
 🎬 [Cloud vs Local Analysis](https://www.youtube.com/watch?v=Vwb89PJQHBc)
 
       **Tried & failed fixes:**
@@ -336,5 +338,4 @@ st.markdown("""
     <p style='font-size: 0.8em; margin-top: 10px;'>YouTube Q&A Assistant v1.1 | Research Ready | Created by Moin</p>
 </div>
 """, unsafe_allow_html=True)
-
 
