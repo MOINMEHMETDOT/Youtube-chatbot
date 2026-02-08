@@ -43,7 +43,7 @@ st.markdown(
 st.markdown("""
 **⚠️Cloud Deployment Technical Limitation**
             
-**⚠️ Production Notice:** Live demo shows "Processing failed" due to YouTube's strict cloud IP blocking on deployed servers (Render/Railway). Works perfectly locally. See details below.
+**⚠️ Production Notice:** If The Live demo shows "Processing failed"this is due to YouTube's strict cloud IP blocking on deployed servers (Render/Railway). See details below.
             
 **✅ Works perfectly on localhost/development.**
 This application faces YouTube bot detection on cloud platforms.
@@ -340,3 +340,4 @@ st.markdown("""
     <p style='font-size: 0.8em; margin-top: 10px;'>YouTube Q&A Assistant v1.1 | Research Ready | Created by Moin</p>
 </div>
 """, unsafe_allow_html=True)
+
